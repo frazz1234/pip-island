@@ -19,7 +19,9 @@
   </a>
 </p>
 
-<p align="center"><img src="assets/screenshots/3-request.png" width="640" alt="Pip asking whether Claude may run npm run build and npm test, with Deny, Always allow and Allow buttons"></p>
+<p align="center"><img src="assets/readme/hero.svg" alt="Meet Pip: the island at the top of the screen asking whether Claude may run npm run build and npm test"></p>
+
+<p align="center"><sub>And here's the real thing:</sub><br><img src="assets/screenshots/3-request.png" width="560" alt="Pip asking whether Claude may run npm run build and npm test, with Deny, Always allow and Allow buttons"></p>
 
 ---
 
