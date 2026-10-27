@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Helvetica, Arial, sans-serif">
+<defs>
+<linearGradient id="pipBody" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FBAA80"/><stop offset="1" stop-color="#D9663F"/></linearGradient>
+<linearGradient id="orangeBtn" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFA678"/><stop offset="1" stop-color="#E5703F"/></linearGradient>
+<radialGradient id="glow" cx="0.5" cy="0.35" r="0.6"><stop offset="0" stop-color="#7A3A1E" stop-opacity="0.75"/><stop offset="1" stop-color="#0D0B0B" stop-opacity="0"/></radialGradient>
+<linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#17120F"/><stop offset="1" stop-color="#0A0909"/></linearGradient>
+<filter id="shadow" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity="0.45"/></filter>
+
+</defs>
+<rect width="1280" height="640" fill="url(#bg)"/><rect width="1280" height="640" fill="url(#glow)"/>
+<g filter="url(#shadow)"><path d="M70 0 h620 v252 a44 44 0 0 1 -44 44 h-532 a44 44 0 0 1 -44 -44 z" fill="#000"/></g>
+<g transform="translate(92 30) scale(0.5)">
+<path d="M100 64 Q102 46 100 32" stroke="#C9623F" stroke-width="9" stroke-linecap="round" fill="none"/>
+<circle cx="100" cy="28" r="15" fill="#FF8496"/>
+<ellipse cx="72" cy="166" rx="19" ry="9" fill="#CC5E38"/><ellipse cx="128" cy="166" rx="19" ry="9" fill="#CC5E38"/>
+<rect x="44" y="58" width="112" height="106" rx="50" fill="url(#pipBody)"/>
+<ellipse cx="80" cy="76" rx="19" ry="8" fill="#fff" opacity="0.28"/>
+<circle cx="76" cy="100" r="7" fill="#2A140C"/><circle cx="124" cy="100" r="7" fill="#2A140C"/><circle cx="78.5" cy="97.5" r="2.2" fill="#fff"/><circle cx="126.5" cy="97.5" r="2.2" fill="#fff"/>
+<ellipse cx="60" cy="120" rx="11" ry="6.5" fill="#F2847A"/><ellipse cx="140" cy="120" rx="11" ry="6.5" fill="#F2847A"/>
+<path d="M87 116 h26 q-3 15 -13 15 q-10 0 -13 -15z" fill="#2A140C"/>
+<ellipse cx="100" cy="126.5" rx="5.5" ry="3" fill="#FF8496"/>
+</g><rect x="190" y="48" width="6" height="18" rx="3" fill="#FFC861"/><circle cx="193" cy="74" r="3.5" fill="#FFC861"/>
+<text x="218" y="76" fill="#fff" font-size="27" font-weight="700">Run a command</text>
+<text x="218" y="104" fill="#8E8580" font-size="18" font-weight="600">my-app · Terminal · 14:38</text>
+<rect x="594" y="58" width="68" height="32" rx="16" fill="#2A2725"/><text x="628" y="80" fill="#E8E2DE" font-size="16" font-weight="700" text-anchor="middle">Bash</text>
+<rect x="98" y="128" width="564" height="78" rx="14" fill="#161413" stroke="#ffffff" stroke-opacity="0.07"/>
+<text x="118" y="158" fill="#B9AFA9" font-size="17" font-weight="600">Build the project and run the tests</text>
+<text x="118" y="188" fill="#fff" font-size="18" font-family="'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace">npm run build &amp;&amp; npm test</text>
+<text x="98" y="252" fill="#8E8580" font-size="16" font-weight="600">↗ Answer in Terminal</text>
+<rect x="296" y="226" width="98" height="42" rx="21" fill="#2A2725"/><text x="345" y="253" fill="#fff" font-size="17" font-weight="700" text-anchor="middle">Deny</text>
+<rect x="404" y="226" width="148" height="42" rx="21" fill="#2A2725"/><text x="478" y="253" fill="#fff" font-size="17" font-weight="700" text-anchor="middle">Always allow</text>
+<rect x="562" y="226" width="100" height="42" rx="21" fill="url(#orangeBtn)"/><text x="612" y="253" fill="#2A140C" font-size="17" font-weight="700" text-anchor="middle">Allow</text>
+<g transform="translate(0 0)">
+<text x="760" y="250" fill="#fff" font-size="120" font-weight="800" letter-spacing="-3">Pip</text>
+<text x="764" y="310" fill="#CFC5BF" font-size="30">The Dynamic Island for</text>
+<text x="764" y="350" fill="#FFB892" font-size="30" font-weight="700">Claude Code on your Mac</text>
+</g>
+<g transform="translate(1020 120) scale(0.62)">
+<path d="M100 64 Q102 46 100 32" stroke="#C9623F" stroke-width="9" stroke-linecap="round" fill="none"/>
+<circle cx="100" cy="28" r="15" fill="#FF8496"/>
+<ellipse cx="72" cy="166" rx="19" ry="9" fill="#CC5E38"/><ellipse cx="128" cy="166" rx="19" ry="9" fill="#CC5E38"/>
+<rect x="44" y="58" width="112" height="106" rx="50" fill="url(#pipBody)"/>
+<ellipse cx="80" cy="76" rx="19" ry="8" fill="#fff" opacity="0.28"/>
+<path d="M66 104 q10 -13 20 0 M114 104 q10 -13 20 0" stroke="#2A140C" stroke-width="7.5" stroke-linecap="round" fill="none"/>
+<ellipse cx="60" cy="120" rx="11" ry="6.5" fill="#F2847A"/><ellipse cx="140" cy="120" rx="11" ry="6.5" fill="#F2847A"/>
+<path d="M87 116 h26 q-3 15 -13 15 q-10 0 -13 -15z" fill="#2A140C"/>
+<ellipse cx="100" cy="126.5" rx="5.5" ry="3" fill="#FF8496"/>
+</g>
+<path transform="translate(1190 150) scale(0.8)" d="M0 -20 C2 -6 6 -2 20 0 C6 2 2 6 0 20 C-2 6 -6 2 -20 0 C-6 -2 -2 -6 0 -20z" fill="#C9A23A"/><path transform="translate(1000 130) scale(0.45)" d="M0 -20 C2 -6 6 -2 20 0 C6 2 2 6 0 20 C-2 6 -6 2 -20 0 C-6 -2 -2 -6 0 -20z" fill="#BFB3A8"/>
+<g font-size="17" font-weight="600" text-anchor="middle"><rect x="177.0" y="430" width="290" height="44" rx="22" fill="#ffffff" fill-opacity="0.07" stroke="#ffffff" stroke-opacity="0.12"/><text x="322.0" y="458" fill="#FFB892">✓ Answers Claude's prompts</text><rect x="495.0" y="430" width="290" height="44" rx="22" fill="#ffffff" fill-opacity="0.07" stroke="#ffffff" stroke-opacity="0.12"/><text x="640.0" y="458" fill="#FFB892">● Live session list</text><rect x="813.0" y="430" width="290" height="44" rx="22" fill="#ffffff" fill-opacity="0.07" stroke="#ffffff" stroke-opacity="0.12"/><text x="958.0" y="458" fill="#FFB892">✦ Wheel &amp; dashboard</text></g>
+<rect x="480" y="520" width="320" height="56" rx="28" fill="url(#orangeBtn)"/>
+<text x="640" y="556" fill="#2A140C" font-size="21" font-weight="800" text-anchor="middle">⬇ Download for macOS</text>
+<text x="640" y="612" fill="#8E8580" font-size="18" text-anchor="middle" font-family="'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace">github.com/frazz1234/pip-island</text>
+</svg>
