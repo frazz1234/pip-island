@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="64" viewBox="0 0 420 64" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Helvetica, Arial, sans-serif">
+<rect x="2" y="2" width="416" height="60" rx="30" fill="#17120F" stroke="#F29467" stroke-width="2"/>
+<g transform="translate(36 32)" fill="#FFA678"><path d="M0 -14 L4.1 -5.7 L13.3 -4.3 L6.7 2.1 L8.2 11.3 L0 7 L-8.2 11.3 L-6.7 2.1 L-13.3 -4.3 L-4.1 -5.7 Z"/></g>
+<text x="64" y="29" fill="#FFE3D3" font-size="19" font-weight="800">Enjoying Pip? Leave a review</text>
+<text x="64" y="48" fill="#C7A898" font-size="13" font-weight="600">Takes a minute · helps other people find it</text>
+<g transform="translate(386 32)"><path d="M-6 -9 l9 9 l-9 9" stroke="#FFA678" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg>

@@ -1,0 +1,46 @@
+name: ⭐ Leave a review
+description: Tell other people what you think of Pip.
+title: "Review: "
+labels: ["review"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for trying Pip! Your review is public, so it helps other people decide whether to install it.
+  - type: dropdown
+    id: rating
+    attributes:
+      label: Your rating
+      options:
+        - ⭐⭐⭐⭐⭐ Love it
+        - ⭐⭐⭐⭐ Really good
+        - ⭐⭐⭐ It's OK
+        - ⭐⭐ Needs work
+        - ⭐ Not for me
+    validations:
+      required: true
+  - type: textarea
+    id: review
+    attributes:
+      label: Your review
+      description: What do you like? What would make Pip better for you?
+      placeholder: I like that I can approve Claude without leaving my editor…
+    validations:
+      required: true
+  - type: dropdown
+    id: uses
+    attributes:
+      label: What do you use Pip with?
+      multiple: true
+      options:
+        - Claude Code in a terminal
+        - Claude Code in an editor (VS Code, Cursor…)
+        - The Claude app's Code tab
+        - Codex
+        - Just the dashboard and the wheel
+  - type: input
+    id: version
+    attributes:
+      label: Pip version (optional)
+      description: Right-click the island, the version is at the top of the menu.
+      placeholder: "1.0.18"
