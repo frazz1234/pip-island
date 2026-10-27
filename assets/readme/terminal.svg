@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Helvetica, Arial, sans-serif">
+<defs>
+<linearGradient id="pipBody" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FBAA80"/><stop offset="1" stop-color="#D9663F"/></linearGradient>
+<linearGradient id="orangeBtn" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFA678"/><stop offset="1" stop-color="#E5703F"/></linearGradient>
+<radialGradient id="glow" cx="0.5" cy="0.35" r="0.6"><stop offset="0" stop-color="#7A3A1E" stop-opacity="0.75"/><stop offset="1" stop-color="#0D0B0B" stop-opacity="0"/></radialGradient>
+<linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#17120F"/><stop offset="1" stop-color="#0A0909"/></linearGradient>
+<filter id="shadow" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity="0.45"/></filter>
+
+</defs>
+<rect width="1200" height="360" rx="20" fill="#121110"/>
+<rect width="1200" height="46" rx="20" fill="#1E1C1B"/><rect y="26" width="1200" height="20" fill="#1E1C1B"/>
+<circle cx="30" cy="23" r="8" fill="#FF5F57"/><circle cx="56" cy="23" r="8" fill="#FEBC2E"/><circle cx="82" cy="23" r="8" fill="#28C840"/>
+<text x="600" y="29" fill="#8E8580" font-size="15" text-anchor="middle">Terminal — zsh</text>
+<g font-family="'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" font-size="17">
+<text x="34" y="100"><tspan fill="#7FD48A">~</tspan><tspan fill="#E8E2DE"> % curl -fsSL https://raw.githubusercontent.com/frazz1234/pip-island/</tspan></text>
+<text x="34" y="128" fill="#E8E2DE">    main/scripts/get-pip.sh | bash</text>
+<text x="34" y="176" fill="#FFB892">Downloading Pip…</text>
+<text x="34" y="216" fill="#E8E2DE">Pip is installed in /Applications. Tap the island at the top of</text>
+<text x="34" y="244" fill="#E8E2DE">your screen to connect it to Claude Code.</text>
+<text x="34" y="292"><tspan fill="#7FD48A">~</tspan><tspan fill="#E8E2DE"> % </tspan></text>
+<rect x="88" y="276" width="11" height="21" fill="#E8E2DE"/>
+</g>
+<g transform="translate(1040 200) scale(0.62)">
+<path d="M100 64 Q102 46 100 32" stroke="#C9623F" stroke-width="9" stroke-linecap="round" fill="none"/>
+<circle cx="100" cy="28" r="15" fill="#FF8496"/>
+<ellipse cx="72" cy="166" rx="19" ry="9" fill="#CC5E38"/><ellipse cx="128" cy="166" rx="19" ry="9" fill="#CC5E38"/>
+<rect x="44" y="58" width="112" height="106" rx="50" fill="url(#pipBody)"/>
+<ellipse cx="80" cy="76" rx="19" ry="8" fill="#fff" opacity="0.28"/>
+<path d="M66 104 q10 -13 20 0 M114 104 q10 -13 20 0" stroke="#2A140C" stroke-width="7.5" stroke-linecap="round" fill="none"/>
+<ellipse cx="60" cy="120" rx="11" ry="6.5" fill="#F2847A"/><ellipse cx="140" cy="120" rx="11" ry="6.5" fill="#F2847A"/>
+<path d="M87 116 h26 q-3 15 -13 15 q-10 0 -13 -15z" fill="#2A140C"/>
+<ellipse cx="100" cy="126.5" rx="5.5" ry="3" fill="#FF8496"/>
+</g>
+</svg>
