@@ -17,10 +17,6 @@
   <a href="https://github.com/frazz1234/pip-island/releases/latest/download/Pip.dmg">
     <img src="assets/readme/download-button.svg" width="420" alt="Download Pip for Mac (Pip.dmg)">
   </a>
-  <br>
-  <a href="https://github.com/frazz1234/pip-island/issues/new?template=review.yml">
-    <img src="assets/readme/review-button.svg" width="420" alt="Enjoying Pip? Leave a review">
-  </a>
 </p>
 
 <p align="center"><img src="assets/readme/hero.svg" alt="Meet Pip: the island at the top of the screen asking whether Claude may run npm run build and npm test"></p>
@@ -51,7 +47,6 @@
 - [Settings](#settings)
 - [Updates](#updates)
 - [Uninstall](#uninstall)
-- [Reviews](#reviews)
 - [FAQ](#faq)
 
 ---
@@ -305,7 +300,6 @@ Right-click the island (or click the ⚙️ gear) for:
 | **Away Mode** / **Away Folder…** | Use Claude from your phone |
 | **Open the Wheel** | Open the pie menu |
 | **Check for Updates…** / **Update Automatically** | Control updates |
-| **Leave a Review…** | Tell us what you think (opens the review form) |
 | **Quit** | Close Pip |
 
 ---
@@ -325,17 +319,6 @@ To update right away: right-click the island → **Check for Updates…**, or ru
    so Claude goes back to asking in the terminal.
 2. Choose **Quit**.
 3. Drag **Pip** from **Applications** to the **Trash**.
-
----
-
-## Reviews
-
-Enjoying Pip, or missing something? **[Leave a review](https://github.com/frazz1234/pip-island/issues/new?template=review.yml)**: pick a rating, write a few words, done.
-You need a free GitHub account. Reviews are public, so they help other people decide whether to try Pip.
-
-You can also open the form from Pip: right-click the island → **Leave a Review…**, or **Settings → General → Review**.
-
-📖 **[Read what people say](https://github.com/frazz1234/pip-island/issues?q=label%3Areview)**
 
 ---
 
