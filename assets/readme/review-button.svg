@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="84" viewBox="0 0 420 84" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Helvetica, Arial, sans-serif">
+<defs>
+<linearGradient id="pipBody" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FBAA80"/><stop offset="1" stop-color="#D9663F"/></linearGradient>
+<linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2A2420"/><stop offset="1" stop-color="#14110F"/></linearGradient>
+<path id="star" d="M0 -8 L2.35 -3.2 L7.6 -2.5 L3.8 1.2 L4.7 6.5 L0 4 L-4.7 6.5 L-3.8 1.2 L-7.6 -2.5 L-2.35 -3.2 Z"/>
+</defs>
+<rect x="2" y="2" width="416" height="80" rx="40.0" fill="url(#bg)" stroke="#E5703F" stroke-width="2"/>
+<g transform="translate(16 8)"><circle cx="34" cy="34" r="30" fill="#3A2116"/><g transform="translate(7 6) scale(0.27)">
+<path d="M100 64 Q102 46 100 32" stroke="#C9623F" stroke-width="9" stroke-linecap="round" fill="none"/>
+<circle cx="100" cy="28" r="15" fill="#FF8496"/>
+<ellipse cx="72" cy="166" rx="19" ry="9" fill="#CC5E38"/><ellipse cx="128" cy="166" rx="19" ry="9" fill="#CC5E38"/>
+<rect x="44" y="58" width="112" height="106" rx="50" fill="url(#pipBody)"/>
+<ellipse cx="80" cy="76" rx="19" ry="8" fill="#fff" opacity="0.28"/>
+<path d="M66 104 q10 -13 20 0 M114 104 q10 -13 20 0" stroke="#2A140C" stroke-width="7.5" stroke-linecap="round" fill="none"/>
+<ellipse cx="60" cy="120" rx="11" ry="6.5" fill="#F2847A"/><ellipse cx="140" cy="120" rx="11" ry="6.5" fill="#F2847A"/>
+<path d="M87 116 h26 q-3 15 -13 15 q-10 0 -13 -15z" fill="#2A140C"/>
+<ellipse cx="100" cy="126.5" rx="5.5" ry="3" fill="#FF8496"/>
+</g></g>
+<text x="96" y="38" fill="#FFF3EC" font-size="24" font-weight="800">Enjoying Pip?</text>
+<text x="96" y="62" fill="#F2A27E" font-size="15" font-weight="600">Leave a review on GitHub</text>
+<g fill="#FFB547"><use href="#star" x="296" y="42"/><use href="#star" x="314" y="42"/><use href="#star" x="332" y="42"/><use href="#star" x="350" y="42"/><use href="#star" x="368" y="42"/></g>
+<g transform="translate(394 42)"><path d="M-4 -8 l8 8 l-8 8" stroke="#F2A27E" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg>
