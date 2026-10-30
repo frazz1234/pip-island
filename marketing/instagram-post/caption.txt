@@ -9,7 +9,7 @@ Pip also:
 🗂️ converts, compresses or locks files when you drag + hold Shift
 📱 lets you approve from your phone with Away mode
 
-Free updates, every day. macOS 14 or later.
+Updates itself automatically. macOS 14 or later.
 👉 Download Pip: link in bio
 
 #macos #macapp #mac #productivity #claudecode #codex #ai #developer #coding #macbook #notch #dynamicisland #devtools #indiedev #cute
