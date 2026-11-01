@@ -1,0 +1,15 @@
+Meet Pip 🧡 a tiny buddy that lives in your Mac's notch.
+
+When Claude Code (or Codex) needs your OK, Pip pops open right there. No more jumping back to the terminal. Allow, Always allow or Deny, and keep working ✨
+
+Pip also:
+🎵 shows your music, with AirPlay, plus your calendar and weather
+🔔 brings your Mac notifications into the notch
+🎯 opens a wheel of your apps, sites and commands with ⌃⌥Space
+🗂️ converts, compresses or locks files when you drag + hold Shift
+📱 lets you approve from your phone with Away mode
+
+Updates itself automatically. macOS 14 or later.
+👉 Download Pip: link in bio
+
+#macos #macapp #mac #productivity #claudecode #codex #ai #developer #coding #macbook #notch #dynamicisland #devtools #indiedev #cute
