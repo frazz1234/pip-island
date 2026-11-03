@@ -32,7 +32,12 @@
   - [Claude asks, Pip pops open](#claude-asks-pip-pops-open)
   - [Pip in the notch](#pip-in-the-notch)
   - [The Pip tab](#the-pip-tab)
+  - [The live view](#the-live-view)
   - [The dashboard](#the-dashboard)
+  - [The Mac tab](#the-mac-tab)
+  - [The Tools tab](#the-tools-tab)
+  - [The teleprompter](#the-teleprompter)
+  - [The Dev tab](#the-dev-tab)
   - [The wheel](#the-wheel)
   - [The file wheel](#the-file-wheel)
 - [Download and install](#download-and-install)
@@ -56,7 +61,11 @@
 - 🟠 **Claude asks → Pip pops open.** Allow, Always allow, Deny, or *Answer in Claude* to use Claude's own prompt.
   Works with Claude Code in any terminal and in the Claude app's Code tab, and with OpenAI Codex
   (CLI, IDE extension and the ChatGPT desktop app).
-- 🎵 **Hover the island** for music (Apple Music / Spotify), your next events, the weather, your battery and a volume slider.
+- 👀 **Watch Claude work.** The live view follows a session step by step, with the diff it's writing and the output of its commands.
+- 🎵 **Hover the island** for music (Apple Music / Spotify), your next events (with a **Join** button for video calls), the weather and the next days, your battery and a volume slider.
+- 🖥️ **Mac tab:** CPU, GPU, memory, network, disk and the batteries of your AirPods, Magic Mouse and Keyboard.
+- 🧰 **Tools tab:** quick notes, Apple Reminders, a color picker, a camera mirror and a teleprompter that runs right under your camera.
+- 🛠️ **Dev tab:** your local dev servers, your GitHub Actions, and *Ask Claude Code* to start a task from the notch.
 - 🔊 **Press the volume keys** and Pip shows the level on a 16-step bar (drag it, or tap the speaker to mute).
 - 🎯 **The wheel.** Press **⌃⌥Space** for a pie menu under the mouse with your apps, files, websites, commands and Pip's own switches.
 - 🗂️ **Drag a file, hold Shift.** A file wheel pops up to convert, compress, resize, rotate, merge or lock it.
@@ -104,6 +113,18 @@ Most of the time Pip stays small. It grows only when something needs your attent
 Every Claude session in one list: **working**, **waiting**, **needs your OK** (red dot) or **done** (green dot).
 Pip tells you which project is waiting for you, and what each session is asking for.
 
+### The live view
+
+When Claude is working, hover the island and the Pip tab follows that session live.
+
+<p align="center"><img src="assets/screenshots/64-live-view.png" width="760" alt="Live view: Claude's steps (Reading, Searching, Run the tests, Editing invoice.ts), the diff being written, and the test output"></p>
+
+- **Steps:** each thing Claude does (Read, Search, Edit, Run…) with a spinner, then a ✓ or a ✗.
+- **The diff:** the lines Claude is changing type themselves out, removed in red, added in green.
+- **The terminal:** the command it runs and the last lines it printed.
+- **All sessions** takes you back to the list. Turn it off in Settings → Claude.
+- Pet Pip: hover it for heart eyes, click for a happy hop. Don't poke it too much.
+
 ### The dashboard
 
 Hover over the island to open it.
@@ -111,14 +132,61 @@ Hover over the island to open it.
 <p align="center"><img src="assets/screenshots/5-dashboard.png" width="760" alt="Dashboard with music player, calendar events and weather"></p>
 
 - **Music:** what's playing in Apple Music or Spotify, with artwork, progress and play / pause / skip.
-- **Calendar:** today's next events and how long until each one starts.
-- **Weather:** temperature, conditions, and today's high and low where you are.
+- **Calendar:** today's next events and how long until each one starts. Events with a Zoom, Teams, Meet, Webex or
+  FaceTime link get a **Join** button, and a card pops up a minute before the call.
+- **Weather:** temperature, conditions, and today's high and low where you are. **Next days** shows the next hours and
+  the next four days.
+- **Swipe** sideways with two fingers to flip between pages.
 - **Top bar:** switch between the dashboard and the Pip tab, see your battery, and open settings with the gear.
 
 <details>
 <summary>When nothing is playing</summary>
 <p align="center"><img src="assets/screenshots/7-dashboard-empty.png" width="760" alt="Dashboard with no music playing"></p>
 </details>
+
+### The Mac tab
+
+<p align="center"><img src="assets/screenshots/58-mac-tab.png" width="760" alt="Mac tab: CPU, memory, GPU, network, disk, free space and device batteries"></p>
+
+- **CPU** with the last minute as a line, **GPU**, **memory**, **network** and **disk** speed, and **free space**.
+- **Devices:** this Mac's battery, each AirPod and the case, Magic Mouse, Keyboard and Trackpad. Low batteries turn red.
+- Pip only checks while the tab is open.
+
+### The Tools tab
+
+<table>
+<tr>
+<td align="center" width="50%"><img src="assets/screenshots/61-tools-notes.png" alt="Notes"><br><sub><b>Notes</b>: <b>bold</b>, <i>italic</i>, lists and links. Click one to copy it, pin the ones you need</sub></td>
+<td align="center" width="50%"><img src="assets/screenshots/62-tools-reminders.png" alt="Reminders"><br><sub><b>Reminders</b>: tick them off, or type “pay rent tomorrow 5pm” and Pip sets the alarm</sub></td>
+</tr>
+<tr>
+<td align="center"><img src="assets/screenshots/63-tools-color.png" alt="Color picker"><br><sub><b>Color</b>: pick any pixel on screen, copy as HEX, RGB or HSL, see the contrast</sub></td>
+<td align="center"><img src="assets/screenshots/65-tools-camera.png" alt="Camera"><br><sub><b>Camera</b>: a mirror before your call. Photos and videos land in Pictures/Pip</sub></td>
+</tr>
+</table>
+
+- Notes stay on your Mac. Reminders use your own Apple Reminders.
+- The camera is on only while the Camera page is open, so the green light never lingers.
+
+### The teleprompter
+
+Write or open your script (text, Word, RTF or PDF) in **Tools → Prompter**, set your pace, and press **Start**.
+
+<p align="center"><img src="assets/screenshots/67-prompter.png" width="640" alt="The teleprompter in the island: the current line with the word to say in orange, the next line, and the time left"></p>
+
+The island shows your script right under the camera, so you read it and still look people in the eye. The word to
+say is in orange. Pause, go back or ahead a line, or change the speed without stopping.
+
+### The Dev tab
+
+<p align="center"><img src="assets/screenshots/68-dev-tab.png" width="760" alt="Dev tab: dev servers by port, CI runs, and Ask Claude Code"></p>
+
+- **Dev servers:** anything you're running locally (node, bun, python, ruby, php, postgres…) by port and project.
+  Open it in the browser, or stop it (click twice).
+- **CI:** the latest GitHub Actions run of your recent Claude projects, and a card when one fails. It uses your own
+  [`gh`](https://cli.github.com) login (run `gh auth login` once). Pip stores no token.
+- **Ask Claude Code:** type a task, pick a project, press Start. Claude Code opens in Terminal and gets to work.
+- It also shows which coding agents are running right now (Claude Code, Codex, Gemini CLI, Cursor…).
 
 ### The wheel
 
@@ -341,6 +409,16 @@ Claude Code asks for permission in the terminal as usual. Nothing breaks.
 
 Claude's requests go from Claude Code to Pip on your own Mac (`127.0.0.1`), and your answer goes straight back.
 Requests coming from a web browser are refused.
+
+The live view, notes, clipboard history and system stats stay on your Mac. The weather comes from Open-Meteo
+(no account), and CI goes through your own `gh` login.
+</details>
+
+<details>
+<summary><b>Why does Pip ask for the camera or Reminders?</b></summary>
+
+Only when you use those pages: the camera for the mirror in Tools → Camera (on only while that page is open),
+Reminders for Tools → Reminders. Say no and everything else still works.
 </details>
 
 <details>
