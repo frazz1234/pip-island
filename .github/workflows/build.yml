@@ -1,0 +1,168 @@
+# Builds Pip from its private source repo on GitHub's free macOS runners (free because
+# this repo is public). The source stays private: build output, test results and
+# screenshots go back to the private repo (branch ci/<branch> + a commit status), and this
+# public log only says passed or failed.
+#
+# Started by hand (Actions → Build → Run workflow) or from the source repo with
+# scripts/ci.sh. There's no pull_request trigger, so forks never see the secrets and only
+# people with write access here can start a run.
+#
+# Secrets (scripts/setup-cloud-build.sh in the source repo sets them):
+#   SOURCE_TOKEN   fine-grained token on the source repo: Contents + Commit statuses, read/write
+#   PIP_CERT_P12, PIP_CERT_PASSWORD, APPLE_ID, APPLE_APP_PASSWORD, APPLE_TEAM_ID   (releases only)
+name: Build
+
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: Branch of the source repo to build
+        required: true
+        default: main
+      mode:
+        description: "check: build, tests, screenshots · release: ship it to every user (main only)"
+        type: choice
+        options: [check, release]
+        default: check
+
+permissions:
+  contents: write   # release mode publishes the release in this repo
+
+concurrency:
+  group: build-${{ inputs.mode }}-${{ inputs.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    # Intel runner: GitHub's arm64 macOS pool often has no capacity. build.sh compiles both
+    # slices, so the app is the same.
+    runs-on: macos-15-intel
+    env:
+      SRC: frazz1234/pip-island-src
+      REF: ${{ inputs.ref }}
+      MODE: ${{ inputs.mode }}
+    steps:
+      - name: Check the request
+        env:
+          SOURCE_TOKEN: ${{ secrets.SOURCE_TOKEN }}
+        run: |
+          [ -n "$SOURCE_TOKEN" ] || { echo "::error::Add the SOURCE_TOKEN secret (scripts/setup-cloud-build.sh in the source repo)."; exit 1; }
+          case "$REF" in ''|-*|*..*|*[!A-Za-z0-9._/-]*) echo "::error::That isn't a branch name."; exit 1;; esac
+          if [ "$MODE" = release ] && [ "$REF" != main ]; then echo "::error::Releases ship from main only."; exit 1; fi
+
+      # Plain quiet git instead of actions/checkout, which prints the commit's title here.
+      - name: Get the source
+        env:
+          SOURCE_TOKEN: ${{ secrets.SOURCE_TOKEN }}
+          GH_TOKEN: ${{ secrets.SOURCE_TOKEN }}
+        run: |
+          git init -q src
+          git -C src fetch -q --depth 1 "https://x-access-token:${SOURCE_TOKEN}@github.com/$SRC.git" "refs/heads/$REF" \
+            || { echo "::error::Couldn't fetch branch $REF (does it exist, and can SOURCE_TOKEN read the repo?)"; exit 1; }
+          git -C src -c advice.detachedHead=false checkout -q FETCH_HEAD
+
+      - name: Mark the commit as building
+        env:
+          GH_TOKEN: ${{ secrets.SOURCE_TOKEN }}
+        run: |
+          SHA="$(git -C src rev-parse HEAD)"
+          echo "SHA=$SHA" >> "$GITHUB_ENV"
+          gh api -X POST "repos/$SRC/statuses/$SHA" -f state=pending -f context="Pip $MODE" \
+            -f description="Building…" -f target_url="https://github.com/$SRC/tree/ci/$REF" >/dev/null
+          echo "Building ${SHA:0:7}"
+
+      # Same numbering as scripts/release.sh: one more than the latest release here.
+      - name: Pick the version
+        if: inputs.mode == 'release'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          last="$(gh release view --repo "$GITHUB_REPOSITORY" --json tagName --jq .tagName)"
+          n=$(( ${last##*.} + 1 ))
+          echo "PIP_BUILD=$n" >> "$GITHUB_ENV"
+          echo "PIP_VERSION=1.0.$n" >> "$GITHUB_ENV"
+          echo "Releasing Pip 1.0.$n"
+
+      - name: Import the signing certificate
+        if: inputs.mode == 'release'
+        env:
+          PIP_CERT_P12: ${{ secrets.PIP_CERT_P12 }}
+          PIP_CERT_PASSWORD: ${{ secrets.PIP_CERT_PASSWORD }}
+        run: |
+          [ -n "$PIP_CERT_P12" ] || { echo "::error::Add the signing secrets (scripts/setup-cloud-build.sh)."; exit 1; }
+          KC="$RUNNER_TEMP/pip.keychain-db"
+          echo "$PIP_CERT_P12" | base64 --decode > "$RUNNER_TEMP/pip.p12"
+          security create-keychain -p ci "$KC"
+          security set-keychain-settings "$KC"
+          security unlock-keychain -p ci "$KC"
+          security import "$RUNNER_TEMP/pip.p12" -k "$KC" -P "$PIP_CERT_PASSWORD" -T /usr/bin/codesign >/dev/null
+          rm -f "$RUNNER_TEMP/pip.p12"
+          security set-key-partition-list -S apple-tool:,apple: -s -k ci "$KC" >/dev/null
+          security list-keychains -d user -s "$KC" $(security list-keychains -d user | tr -d '"')
+          ID="$(security find-identity -v -p codesigning "$KC" | awk '/Developer ID Application/ {print $2; exit}')"
+          [ -n "$ID" ] || { echo "::error::PIP_CERT_P12 has no valid Developer ID Application identity."; exit 1; }
+          echo "PIP_SIGN_ID=$ID" >> "$GITHUB_ENV"
+          echo "PIP_KEYCHAIN=$KC" >> "$GITHUB_ENV"
+
+      # Everything the source prints (compiler errors quote code) goes to out/log.txt,
+      # which only the private repo gets.
+      - name: Build
+        working-directory: src
+        env:
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_APP_PASSWORD: ${{ secrets.APPLE_APP_PASSWORD }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+        run: |
+          mkdir -p ../out
+          set +e
+          if [ "$MODE" = release ]; then
+            { scripts/build.sh && scripts/make-dmg.sh && scripts/notarize.sh; } > ../out/log.txt 2>&1
+          elif [ -x scripts/check.sh ]; then
+            scripts/check.sh > ../out/log.txt 2>&1
+          else
+            # Branches from before check.sh: build + screenshots.
+            { scripts/build.sh && mkdir -p build/snapshots && build/Pip.app/Contents/MacOS/Pip --snapshot build/snapshots; } > ../out/log.txt 2>&1
+          fi
+          code=$?
+          set -e
+          if [ $code = 0 ]; then echo "RESULT=passed" >> "$GITHUB_ENV"; else echo "RESULT=failed" >> "$GITHUB_ENV"; fi
+
+      - name: Send the results to the private repo
+        if: always() && env.SHA != ''
+        env:
+          SOURCE_TOKEN: ${{ secrets.SOURCE_TOKEN }}
+          GH_TOKEN: ${{ secrets.SOURCE_TOKEN }}
+          RESULT: ${{ env.RESULT || 'failed' }}
+        run: |
+          mkdir -p out && cd out
+          [ -d ../src/build/snapshots ] && cp -R ../src/build/snapshots snapshots
+          printf '%s\n' "result=$RESULT" "mode=$MODE" "branch=$REF" "commit=$SHA" "version=${PIP_VERSION:-}" \
+            "date=$(date -u +%Y-%m-%dT%H:%M:%SZ)" > result.txt
+          git init -q -b results
+          git add -A
+          git -c user.name="Pip build" -c user.email="pip-build@users.noreply.github.com" \
+            commit -q -m "$MODE $REF ${SHA:0:7}: $RESULT"
+          git push -q --force "https://x-access-token:${SOURCE_TOKEN}@github.com/$SRC.git" "HEAD:refs/heads/ci/$REF"
+          state=success; [ "$RESULT" = passed ] || state=failure
+          gh api -X POST "repos/$SRC/statuses/$SHA" -f state=$state -f context="Pip $MODE" \
+            -f description="$MODE $RESULT" -f target_url="https://github.com/$SRC/tree/ci/$REF" >/dev/null
+
+      - name: Publish the release
+        if: inputs.mode == 'release' && env.RESULT == 'passed'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SOURCE_TOKEN: ${{ secrets.SOURCE_TOKEN }}
+        run: |
+          # The release notes are the last commit message, as before. They are public.
+          gh release create "v$PIP_VERSION" src/build/Pip.dmg --repo "$GITHUB_REPOSITORY" \
+            --title "Pip $PIP_VERSION" --notes "$(git -C src log -1 --pretty=%B)" --latest >/dev/null
+          git -C src tag "v$PIP_VERSION"
+          git -C src push -q "https://x-access-token:${SOURCE_TOKEN}@github.com/$SRC.git" "v$PIP_VERSION" || true
+          echo "Pip $PIP_VERSION is out."
+
+      - name: Result
+        if: always()
+        run: |
+          if [ "${RESULT:-failed}" = passed ]; then echo "✓ $MODE passed for $REF"; exit 0; fi
+          echo "::error::$MODE failed for $REF. The details are on the private repo's ci/$REF branch."
+          exit 1
