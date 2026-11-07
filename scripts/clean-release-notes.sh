@@ -6,6 +6,7 @@
 #   scripts/clean-release-notes.sh --apply     rewrite the notes on GitHub (needs gh, logged in)
 #   git log -1 --pretty=%B | scripts/clean-release-notes.sh --filter
 #                                              clean one message (use it in release.sh)
+#   scripts/clean-release-notes.sh --prune     delete every release and tag except the latest
 set -euo pipefail
 
 REPO="${PIP_RELEASE_REPO:-frazz1234/pip-island}"
@@ -22,11 +23,28 @@ case "${1:-}" in
     clean || true
     exit 0
     ;;
-  ""|--apply) ;;
-  *) echo "Usage: $0 [--apply | --filter]" >&2; exit 2 ;;
+  ""|--apply|--prune) ;;
+  *) echo "Usage: $0 [--apply | --filter | --prune]" >&2; exit 2 ;;
 esac
 
 command -v gh >/dev/null || { echo "Install the GitHub CLI first: brew install gh" >&2; exit 1; }
+
+if [ "${1:-}" = --prune ]; then
+  latest="$(gh release view --repo "$REPO" --json tagName --jq .tagName)"
+  echo "Keeping $latest. Deleting every other release and its tag…"
+  gh release list --repo "$REPO" --limit 1000 --json tagName --jq '.[].tagName' | while read -r tag; do
+    [ "$tag" = "$latest" ] && continue
+    gh release delete "$tag" --repo "$REPO" --cleanup-tag --yes && echo "  ✗ $tag" || true
+  done
+  # Tags left without a release.
+  git ls-remote --tags "https://github.com/$REPO.git" | awk '{print $2}' | grep -v '\^{}$' | sed 's#refs/tags/##' \
+    | while read -r tag; do
+        [ "$tag" = "$latest" ] && continue
+        gh api -X DELETE "repos/$REPO/git/refs/tags/$tag" >/dev/null 2>&1 && echo "  ✗ tag $tag" || true
+      done
+  echo "Done. Only $latest is left."
+  exit 0
+fi
 
 changed=0
 while IFS=$'\t' read -r id tag; do
